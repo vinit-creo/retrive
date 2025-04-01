@@ -26,6 +26,7 @@ def classify_intent(text, model, tokenizer, device):
         outputs = model(**inputs)
 
         if hasattr(outputs, 'logits'):
+            #Haqs attributes function
             scores = torch.nn.functional.softmax(outputs.logits, dim=1).cpu().numpy()[0]
         else:
          
@@ -54,8 +55,8 @@ def check_local_data_intent(conversation, model, tokenizer, device):
     local_data_keywords = [
         "fetch ", "retrieve ", "get ", "load ", 
         "local data", "local file", "local database", "access ",
-        "from my computer", "from my device", "from my drive",
-        "stored ", "local storage", "from disk"
+        "from my account", "from my device", "from my drive",
+        "stored ", "local storage", "from disk", "report", "result","scan", 
     ]
     
 
@@ -64,7 +65,6 @@ def check_local_data_intent(conversation, model, tokenizer, device):
 
     for keyword in local_data_keywords:
         if keyword.lower() in full_text.lower():
-            logging.info(f"Keyword match detected: '{keyword}'")
             return True
     
 
