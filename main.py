@@ -10,6 +10,8 @@ load_dotenv()
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
+
 def check_memory():
 
     total_memory = psutil.virtual_memory().total / (1024 ** 3)  
@@ -136,9 +138,14 @@ def main():
                 "User: Can you tell me about cancer treatments?",
                 "Assistant: I can provide general information about cancer treatments.",
                 "User: What are the common side effects of chemotherapy?"
+            ],
+            [
+                "User: Show me my recent Blood Sugar records",
             ]
    
         ]
+
+        
         
         for i, conversation in enumerate(test_conversations):
             logging.info(f"\nAnalyzing conversation {i+1}:")
